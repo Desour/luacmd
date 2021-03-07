@@ -55,7 +55,7 @@ minetest.register_chatcommand(
       description = "Clears all variables in your /lua player context",
       privs = { lua = true },
       func =
-         function(playerName, paramStr)
+         function(playerName)
             playerEnvs[playerName] = nil;
          end
    });
