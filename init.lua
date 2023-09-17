@@ -23,7 +23,7 @@ local function runLuaCmd(playerName, paramStr)
    end
 
    setfenv(cmdFunc, playerEnv);
-   cmdFunc();
+   return cmdFunc();
 end
 
 minetest.register_privilege(
@@ -41,9 +41,13 @@ minetest.register_chatcommand(
       privs = { lua = true },
       func =
          function(playerName, paramStr)
-            local success, errMsg = pcall(runLuaCmd, playerName, paramStr);
+            local success, errMsgOrRes = pcall(runLuaCmd, playerName, paramStr);
             if not success then
-               minetest.chat_send_player(playerName, "ERROR: "..errMsg);
+               return false, "ERROR: "..errMsgOrRes
+            else
+               local msg = dump(errMsgOrRes)
+               print("[luacmd returned] "..msg)
+               return true, "returned: "..msg
             end
          end
    });
