@@ -32,7 +32,8 @@ local PlayerEnv =
                for _, arg in ipairs({...}) do
                   str = str .. tostring(arg);
                end
-               minetest.chat_send_player(player:get_player_name(), str, false);
+               minetest.chat_send_player(player:get_player_name(), str);
+               print("[luacmd] "..str)
             end
          end
       };
