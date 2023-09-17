@@ -1,12 +1,3 @@
-local PrintablePos =
-{
-   __tostring = function(pos)
-      return "(" .. pos.x .. ", " .. pos.y .. ", " .. pos.z .. ")";
-   end
-};
-function PrintablePos:new(pos)
-   return setmetatable(pos, self);
-end
 
 local PlayerEnv =
 {
@@ -23,7 +14,7 @@ local PlayerEnv =
          end,
 
          here = function(player)
-            return PrintablePos:new(player:getpos());
+            return player:getpos();
          end,
 
          print = function(player)
