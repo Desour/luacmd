@@ -14,7 +14,7 @@ local PlayerEnv =
          end,
 
          here = function(player)
-            return player:getpos();
+            return player:get_pos();
          end,
 
          print = function(player)
