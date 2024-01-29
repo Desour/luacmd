@@ -41,6 +41,8 @@ minetest.register_chatcommand(
       privs = { lua = true },
       func =
          function(playerName, paramStr)
+            minetest.log("action", string.format("%s issued luacmd: /lua %s",
+                  playerName, paramStr))
             local success, errMsgOrRes = pcall(runLuaCmd, playerName, paramStr);
             if not success then
                return false, "ERROR: "..errMsgOrRes
